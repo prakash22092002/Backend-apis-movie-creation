@@ -1,0 +1,17 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "name": "Kantara",
+      "rating": "9",
+      "genre": "horror",
+      "released_year": "2020"
+    },
+    {
+      "name": "DeadPool",
+      "rating": "9",
+      "genre": "Action",
+      "release_year": "2025"
+    }
+  ]
+}

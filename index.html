@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="w-[90%] max-w-md bg-white shadow-lg rounded-xl p-6">
+        <nav class="mb-4 text-center">
+            <h2 class="text-2xl font-bold text-red-500">
+                BOOK MY <span class="text-yellow-400">SHOW</span>
+            </h2>
+        </nav>
+
+        <main>
+            <section>
+                <form action="" class="flex flex-col gap-4" onsubmit="handleForSubmit(event)">
+
+                    <div>
+                        <input type="text" id="movie-name" placeholder="Enter Movie Name"
+                            class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400" />
+                    </div>
+
+                    <div>
+                        <input type="text" id="movie-rating" placeholder="Enter Movie Rating"
+                            class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400" />
+                    </div>
+
+                    <div>
+                        <input type="text" id="movie-genre" placeholder="Enter Genre"
+                            class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400" />
+                    </div>
+
+                    <div>
+                        <input type="text" id="movie-release-year" placeholder="Enter Released Year"
+                            class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-400" />
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="Submit"
+                            class="bg-red-500 text-white font-semibold px-6 py-2 rounded-lg cursor-pointer hover:bg-red-600 transition" />
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script>
+
+        let movie_name_input = document.getElementById('movie-name');
+        let movie_rating_input = document.getElementById('movie-rating');
+        let movie_genre_input = document.getElementById('movie-genre');
+        let movie_release_year_input = document.getElementById('movie-release-year');
+
+
+        function handleForSubmit(event) {
+            event.preventDefault();
+
+            let movie_name = event.target[0].value;
+            let movie_rating = event.target[1].value;
+            let movie_genre = event.target[2].value;
+            let movie_released_year = event.target[3].value;
+
+            const payload = {
+                name: movie_name,
+                rating: movie_rating,
+                genre: movie_genre,
+                release_year: movie_released_year
+            }
+
+            fetch(`http://localhost:3000/movie`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload)
+            });
+
+            // to clear the input values once the form is been submitted
+            movie_name_input.value = '';
+            movie_rating_input.value = '';
+            movie_genre_input.value = '';
+            movie_release_year_input.value = '';
+
+        }
+    </script>
+</body>
+
+</html>
