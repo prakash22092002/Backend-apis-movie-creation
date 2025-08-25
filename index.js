@@ -54,6 +54,28 @@ app.post("/movie", (req, res) => {
     }
 });
 
+// dynamic routing 
+app.get("/movies/:id", (req, res) => {
+    try {
+        const movieId = req.params;
+        const movieQuery = req.query
+        res.send(movieQuery)
+    }
+    catch (err) {
+        return res.status(500).json(
+            {
+                message: "Internal Server Error"
+            }
+        );
+
+
+    }
+})
+
+
+
+
+
 app.listen(3000, () => {
     console.log("started")
 })
