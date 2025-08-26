@@ -57,9 +57,20 @@ app.post("/movie", (req, res) => {
 // dynamic routing 
 app.get("/movies/:id", (req, res) => {
     try {
-        const movieId = req.params;
-        const movieQuery = req.query
-        res.send(movieQuery)
+        const movieId = req.params;   // catching the movies id dynamic path params here
+        // const movieQuery = req.query
+
+        const readDb = fs.readFile("./db.json", 'utf-8', (err, data) => {
+            if (err) {
+                return res.send({ statusCode: 500, message: "Internal Server Error" })
+            };
+
+            const parseData = JSON.parse(data);
+            const { movies } = parseData;
+            const movieFilterById = movies.filter((el) => String(el.id) === String(movieId.id))
+
+            res.send(movieFilterById)
+        })
     }
     catch (err) {
         return res.status(500).json(
@@ -71,10 +82,6 @@ app.get("/movies/:id", (req, res) => {
 
     }
 })
-
-
-
-
 
 app.listen(3000, () => {
     console.log("started")
