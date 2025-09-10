@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(movieRoutes);
 
 // customers route
-app.use(customersRoute);
+app.use('/customers', customersRoute);
 
 app.listen(3000, () => {
     console.log("started")

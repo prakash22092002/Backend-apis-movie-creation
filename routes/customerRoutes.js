@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const customersRoute = Router();
 
-customersRoute.get("/customers", (req, res) => {
+customersRoute.get("/", (req, res) => {
     try {
         res.send({
             status: 200,
